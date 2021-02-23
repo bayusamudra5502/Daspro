@@ -1,0 +1,18 @@
+module UkuranBaju where
+  -- Menentukan Ukuran Baju	ukuranBaju(t,b)
+
+  -- DEFINISI DAN SPESIFIKASI
+  ukuranBaju::Int->Int->Int
+  {- Menentukan UKuran Baju dari tinggi dan berat badan
+     yang dimasukan -}
+
+  -- IMPLEMENTASI
+  ukuranBaju t b
+     | (t <= 150) = 1
+     | (t > 150) && (b <= 60) = 2
+     | (t > 150) && (t <= 170) = if b < 80 then 2 else 3
+     | (t > 170) && (b > 60) && ( b <= 80) = 3
+     | otherwise = 4  
+
+  -- APLIKASI
+    -- f 
