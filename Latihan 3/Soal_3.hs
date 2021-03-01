@@ -64,8 +64,5 @@
 
     -- IMPLEMENTASI
     sumIsiList l
-        | isOneElmt l = head l
-        | otherwise = head l + sumIsiList (tail l)
-
-    -- APLIKASI
-        -- sumIsiList 
+        | isOneElmt l = head l -- Basis
+        | otherwise = head l + sumIsiList (tail l) -- Rekurens

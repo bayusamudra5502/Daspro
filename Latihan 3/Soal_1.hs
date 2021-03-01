@@ -65,6 +65,6 @@
     -- IMPLEMENTASI
     countFactorOfX n l
         | isEmpty l = 0 -- Basis
-        | otherwise = if n `mod` head l == 0  then 
+        | otherwise = if n `mod` (head l) == 0  then -- Rekurens
             1 + countFactorOfX n (tail l) else
             countFactorOfX n (tail l)

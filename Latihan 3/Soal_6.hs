@@ -65,9 +65,9 @@
 
     -- IMPLEMENTASI
     isOrdered l
-        | isOneElmt l = True
-        | otherwise = 
-            (head l) < (head (tail l)) && isOrdered (tail l)
+        | isOneElmt l = True -- Basis
+        | otherwise =  -- Rekurens
+            (head l) <= (head (tail l)) && isOrdered (tail l)
 
     -- APLIKASI
         -- isOrdered [1,2,3] = True
