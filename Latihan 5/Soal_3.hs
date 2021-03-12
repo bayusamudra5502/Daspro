@@ -11,4 +11,4 @@ ubahArah s r = (s+r) `mod` 360
 
 -- APLIKASI
     -- ubahArah 50 10 = 60
-    -- ubahArah 20 -100 = -80
+    -- ubahArah 20 -100 = 280

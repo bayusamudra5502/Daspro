@@ -91,7 +91,7 @@ module AlternateSort where
             | isOneElmt l = l
             | otherwise = -- Rekurens
                 let 
-                    (a,b) = divList l 
+                    (a,b) = divList l
                 in
                     mergeList (mergeSort a) (mergeSort b)
 

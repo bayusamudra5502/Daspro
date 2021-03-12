@@ -18,7 +18,7 @@ sumInteger m n f
 
 -- APLIKASI
     -- Menghasilkan True bila x membagi habis 100
-    -- sumInteger 1 100 (\x -> x `mod` 100 == 0)
+    -- sumInteger 1 100 (\x -> 100 `mod` x == 0)
     -- Expected Result : 100
 
     -- Menghasilkan True bila x adalah genap dan habis dibagi 10
