@@ -1,0 +1,9 @@
+Program NamaProgram
+{ Deskripsi }
+
+KAMUS
+    a : integer
+
+ALGORITMA
+    input(a)
+    output(a+2)
