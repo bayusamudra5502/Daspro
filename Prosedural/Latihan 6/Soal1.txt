@@ -1,0 +1,11 @@
+program KelilingLingkaran
+{ Menghitung Keliling lingkaran berdasarkan masukan jari-jari }
+
+KAMUS
+    R : real
+    Kel : real
+
+ALGORITMA
+    input(R)
+    kel <- 2 * 3.14 * R
+    output(kel)

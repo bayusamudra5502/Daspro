@@ -1,0 +1,13 @@
+program MenghitungJarak
+{ Menerima kecepatan  dalam m/s dan waktu tempuh dalam s lalu mengeluarkan jarak yang ditempuh dalam m}
+
+KAMUS
+    v,t : real
+    s : real
+
+ALGORITMA
+    input(v)
+    input(t)    
+    s <- v*t
+
+    output(s)

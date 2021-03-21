@@ -1,0 +1,18 @@
+program Kasir
+{ Program ini akan menerima 3 masukan bilangan bulat m,h,k >= 0 lalu mengeluarkan biaya
+yang harus dibayarkan jika membeli m kelereng merah seharga 1000, hijau seharga 1500, 
+dan kuninng seharga 2000}
+
+KAMUS
+   m,h,k:integer
+   bayar:integer
+
+ALGORITMA
+   input(m)
+   input(h)
+   input(k)
+
+   bayar <- m * 1000 + h * 1500 + k * 2000
+   output(bayar)
+
+
