@@ -1,0 +1,98 @@
+program SegiEmpat
+{ Membandingkan luas segi empat pada dua input.
+I.S. Dua buah segi empat yang terdeiri atas
+dua buah titik. F.S. Membandingkan dua buah
+segiempat }
+
+KAMUS
+    type Titik : 
+            <x:integer, y:integer>
+
+    type SegiEmpat :
+            <Tawal: Titik,
+            Takhir: Titik>
+    
+    s1, s2: SegiEmpat
+
+    procedure cekSegiEmpat(input s1:SegiEmpat, input s2:SegiEmpat)
+    { Menerima dua buah input segiempat lalu membandingkannya. I.S.
+    kedua input merupakan segiempat yang valid }
+
+    function luasSegiEmpat(input p1:Titik, input p2:Titik) -> integer
+    { Menerima dua buah titik lalu menghitung luas segiempat dari
+    dua buah titik tersebut }
+
+    function isValidSegiempat(input s:SegiEmpat) -> Boolean
+    { memeriksa apakah p1 dan p2 memennuhi syarat, yaitu berada pada
+    sudut yang bersebrangan dan nilai koordinat keduanya berbeda. }
+
+    function inputSegiempat() -> Segiempat
+    { Menerima input segiempat dari user }
+
+
+ALGORITMA UTAMA
+    s1 = inputSegiempat()
+    s2 = inputSegiempat()
+
+    if not (isValidSegiempat(s1)) then
+        output("Segiempat Pertama tidak valid")
+    else if not (isValidSegiempat(s2)) then
+        output("Segiempat kedua tidak valid")
+    else
+        cekSegiEmpat(s1,s2)
+        
+
+{ Algoritma Realisasi Prosedur }
+    procedure cekSegiEmpat(input s1:SegiEmpat, input s2:SegiEmpat)
+        KAMUS LOKAL
+
+        ALGORITMA
+        if luasSegiEmpat(s1.Tawal, s1.Takhir) > luasSegiEmpat(s2.Tawal, s2.Takhir) then
+            output(“SegiEmpat pertama lebih luas daripada SegiEmpat kedua”)
+        else if luasSegiEmpat(s1.Tawal, s1.Takhir) = luasSegiEmpat(s2.Tawal, s2.Takhir) then
+            output(“Luas SegiEmpat sama”)
+        else { luasSegiEmpat(s1.Tawal, s1.Takhir) < luasSegiEmpat(s2.Tawal, s2.Takhir) }
+            output(“SegiEmpat kedua lebih luas daripada SegiEmpat pertama”)
+    
+    function luasSegiEmpat(input p1:Titik, input p2:Titik) -> integer
+        KAMUS LOKAL
+            deltaX, deltaY : integer
+
+        ALGORITMA
+            if (p1.x >= p2.x) then
+                deltaX = p1.x - p2.x
+            else
+                deltaX = p2.x - p1.x
+            
+            if (p1.y >= p2.y) then
+                deltaX = p1.y - p2.y
+            else
+                deltaX = p2.y - p1.y
+            
+            -> deltaX * deltaY
+    
+    function isValidSegiempat(input s:SegiEmpat) -> Boolean
+        KAMUS LOKAL
+            p1, p2: Titik
+
+        ALGORITMA
+            p1 = s.p1
+            p2 = s.p2
+            -> ((p1.x * p2.x) < 0 and ((p1.y * p2.y) < 0))
+
+    function inputSegiempat() -> SegiEmpat
+        KAMUS LOKAL
+            p1,p2 : Titik
+            segiempatHasil : SegiEmpat
+        
+        ALGORITMA
+            input(p1.x)
+            input(p1.y)
+
+            input(p2.x)
+            input(p2.y)
+
+            segiempatHasil.p1 = p1
+            segiempatHasil.p2 = p2
+
+            -> segiempatHasil
