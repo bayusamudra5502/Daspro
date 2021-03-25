@@ -1,0 +1,80 @@
+program VendingMachine
+{ Program yang menerima input user lalu mengurangi
+banyak barang pada data hingga habis }
+
+KAMUS
+    type Baki:
+        <nomor: integer,
+        harga: integer,
+        jumlah: integer>
+        
+        { nomor harus memenuhi 1 <= nomor <= 40,
+        harga barang harus merupakan kelipatan 5000, dan
+        jumlah harus memenuhi 0 <= jumlah <= 10 }
+
+    type ArrayBaki: array [1..40] of Baki
+
+    dataBaki: ArrayBaki
+    
+    N : integer
+        { N adalah jumlah baki dengan memenuhi 1 <= N <= 40 }
+    
+    i : integer
+
+    sudahValid : Boolean
+
+    nomorPembelianBaki : integer
+    {nomorPembelianBaki harus mengikuti 1 <= nomorPembelianBaki <= N}
+
+    function isValidBaki(input bakiUji:Baki) -> boolean
+    { Fungsi ini akan menerima sebuah bakiUji lalu memeriksa apakah
+    bakiUji tersebut memenuhi kriteria baki atau tidak }
+
+    function inputBaki() -> Baki
+    { Fungsi ini akan menerima semua komponen penyusun baki
+    lalu mengeluarkannya }
+
+    function semuaBakiKosong(dataBaki: ArrayBaki) -> Boolean
+    { Fungsi ini akan menguji apakah semua baki dalam dataBaki sudah 
+    kosong atau belum. Jika kosong keluarkan True }
+
+
+ALGORITMA
+    input(N)
+
+    if not(N <= 40 and N >= 1) then
+        output("Jumlah baki tidak valid")
+    else
+        { Proses Loading }
+
+        i tranversal [1..N]
+            sudahValid <- False
+
+            while not sudahValid do
+                dataBaki[i] <- inputBaki()
+            
+                if isValidBaki(dataBaki[i]) then
+                    sudahValid <- True
+                else
+                    output("Baki belum valid. Ulangi input")
+        
+        { Mode Operation }
+        while not semuaBakiKosong(dataBaki) do
+            input(nomorPembelianBaki)
+
+            if not (0 < nomorPembelianBaki && nomorPembelianBaki <= N) then
+                output("Baki tidak tersedia")
+            else if dataBaki[nomorPembelianBaki].jumlah = 0 then
+                output("Baki sudah kosong")
+            else 
+                dataBaki[nomorPembelianBaki].jumlah = dataBaki[nomorPembelianBaki].jumlah - 1
+
+
+    function isValidBaki(input bakiUji:Baki) -> Boolean
+    KAMUS LOKAL
+
+    ALGORITMA
+        -> (bakiUji.nomor <= 40 and bakiUji.nomor > 0) and
+            (hargaBarang mod 5000 = 0) and
+            (0 <= jumlah and jumlah <= 10)
+
