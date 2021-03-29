@@ -40,6 +40,10 @@ ALGORITMA UTAMA
         output("Segiempat kedua tidak valid")
     else
         cekSegiEmpat(s1,s2)
+
+    Bisa pake :
+    depend on (s1,s2): 
+        ...
         
 
 { Algoritma Realisasi Prosedur }

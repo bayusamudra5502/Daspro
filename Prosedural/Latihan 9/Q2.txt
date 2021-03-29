@@ -1,0 +1,35 @@
+program nilaiUTS
+{ Membaca data integer nilai UTS lalu mengeluarkan 
+rata-ratanya jika input sudah tidak valid (0..100) }
+
+KAMUS
+    sum : integer
+    value : integer {Nilai pada suatu kasus}
+    n : integer {Jumlah data yang  diinputkan}
+
+    function isValidNilai(input nilai) -> boolean
+    { Mengeluarkan true jika nilai berada pada range
+    0..100 }
+
+ALGORITMA
+    n = 0
+
+    iterate
+        output("Nilai UTS = ")
+        input(value)
+    stop isValidNilai(value)
+        n <- n + 1
+        sum <- sum + 1
+    
+    if (n = 0) then
+        output("Tidak ada data")
+    else
+        output(sum/n)
+
+{ Implementasi Fungsi }
+
+    function isValidNilai(input nilai) -> boolean
+        KAMUS LOKAL
+
+        ALGORITMA
+        -> 0 <= nilai and nilai <= 100
