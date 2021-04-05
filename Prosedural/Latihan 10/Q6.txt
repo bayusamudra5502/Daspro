@@ -1,0 +1,28 @@
+KAMUS
+    constant NMax : integer = 100
+    type MatKul : < KodeMK     : integer, 
+                    NamaMK     : string, 
+                    Pengajar   : string, 
+                    JmlPeserta : integer[0..100] >
+    
+    type TabMatKul :
+        < TM : array [1..NMax] of MatKul,
+            NELMT : integer { nilai efektif [0..NMax], 0 jika tabel kosong } >
+            
+function IdxPengajarMK(namaPengajar : String, T : TabMatkul) -> integer
+{ Fungsi ini akan menerima namaPengajar dam T lalu mengeluarkan
+    indeks terakhir dimana Pengajar dalam data T bernilai 
+    namaPengajar}
+
+    KAMUS LOKAL
+        i : integer
+        idx : integer
+
+    ALGORITMA
+        idx <- 0
+
+        i tranversal [1..T.NELMT]
+            if (T.Tab[i].Pengajar = namaPengajar) then
+                idx <- i
+
+        -> idx

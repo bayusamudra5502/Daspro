@@ -1,0 +1,16 @@
+KAMUS
+   constant NMax : integer = 366
+   type TabSuhu : < Tab : array [1..NMax] of real;
+                    Neff : integer > { Bernilai >=0, merupakan nilai efektif array;
+                                       Neff=0 berarti array kosong }
+                                       
+procedure PrintGtX (input T : TabSuhu, input X : real)
+{ Fungsi ini akan mencetak semua nilai pada T yang
+    lebih besar daripada X }
+    KAMUS LOKAL
+        i : integer
+
+    ALGORTIMA
+        i tranversal [1..T.Neff]
+            if (T.Tab[i] > X) then
+                output(T[i])

@@ -1,0 +1,22 @@
+KAMUS
+   constant NMax : integer = 366
+   type TabSuhu : < Tab : array [1..NMax] of real;
+                    Neff : integer > 
+
+function FindMax (T : TabSuhu) -> real
+{ Fungsi ini akan menerima Tabel T dan
+  mengeluarkan nilai maksimum pada T.
+  Jika nilai pada T tidak ada, maka
+  fungsi akan mengeluarkan nilai -9999 }
+    KAMUS LOKAL
+        i : integer
+        max : real
+
+    ALGORITMA
+        max <- -9999
+        i tranversal [1..T.Neff]
+            if (max < T.Tab[i]) then
+                max <- T.Tab[i]
+            
+        -> max
+

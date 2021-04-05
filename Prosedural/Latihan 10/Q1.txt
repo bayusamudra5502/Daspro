@@ -1,0 +1,30 @@
+program FindMin
+
+KAMUS
+   constant NMax : integer = 100
+   type TabInt : array [1..NMax] of integer
+   { Variabel }
+   T : TabInt
+   N : integer { banyaknya elemen efektif }
+   
+   procedure FindMin (input T : TabInt, input N : integer, 
+                    output MIN : integer, output IMin : integer)
+    { Pencarian harga minimum tabel T
+    I.S. Tabel T tidak kosong, N > 0
+    F.S. Menghasilkan harga minimum dari tabel T1..N secara sekuensial mulai dari 
+        indeks 1..N dan menyimpan hasilnya di MIN serta mendapatkan indeks terkecil 
+        elemen yang bernilai MIN yang disimpan di IMin }
+
+ALGORITMA
+    procedure FindMin(input T : TabInt, input N : integer, 
+        output MIN : integer, output IMin : integer)
+        KAMUS LOKAL
+            i : integer
+        ALGORITMA
+            MIN = T[1] { First Element }
+            IMin = 1
+
+            i tranversal [1..N]
+                if (MIN > T[I]) then
+                    MIN <- T[i]
+                    IMin <- i
