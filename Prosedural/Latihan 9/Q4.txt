@@ -18,11 +18,11 @@ ALGORITMA
     iterate
         output("Nilai UTS = ")
         input(nilUTS)
-    stop isValidNilai(nilUTS)
+    stop (not isValidNilai(nilUTS))
         iterate
             output("Nilai UAS = ")
             input(nilUAS)
-        stop isValidJam(nilUAS)
+        stop (not isValidJam(nilUAS))
             output("Ulangi input nilai (0..100)!")
 
         NA <- nilUTS * 0.4 + nilUAS * 0.6

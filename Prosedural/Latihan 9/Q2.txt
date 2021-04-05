@@ -12,19 +12,20 @@ KAMUS
     0..100 }
 
 ALGORITMA
-    n = 0
+    n <- 0
+    sum <- 0
 
     iterate
         output("Nilai UTS = ")
         input(value)
-    stop isValidNilai(value)
+    stop (not isValidNilai(value))
         n <- n + 1
-        sum <- sum + 1
+        sum <- sum + value
     
     if (n = 0) then
         output("Tidak ada data")
     else
-        output(sum/n)
+        output("Nilai rata-rata UTS =", sum/n)
 
 { Implementasi Fungsi }
 
@@ -33,3 +34,7 @@ ALGORITMA
 
         ALGORITMA
         -> 0 <= nilai and nilai <= 100
+
+
+{ Pengulangan denagn Mark = Dia bisa 
+memungkinkan ada kasus kosong, ga masuk ke pengulangan }
