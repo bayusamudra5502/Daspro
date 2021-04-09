@@ -1,0 +1,17 @@
+function SearchGtX (T : TabSuhu, X : real) -> boolean
+{ Fungsi ini akan menerima T dan mengeluarakn True
+    bila ada data di T yang lebih besar dari X.
+    Sebaliknya, bila tidak ada akan mengeluarkan False }
+
+    KAMUS LOKAL
+        result : boolean
+        i : integer
+
+    ALGORITMA
+        result <- False
+
+        i tranversal [1..T.Neff]
+            if (T.Tab[i] > X) then
+                result <- True
+        
+        -> result

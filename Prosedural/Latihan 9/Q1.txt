@@ -1,0 +1,48 @@
+program Jam
+{ Program ini akan menerima tiga buah integer h, m,
+  dan s lalu apabila nilai yang dimasukan valid,
+  akan dibentuk data bertipe jam }
+
+KAMUS
+    type Jam : <HH: integer[0..23];
+                MM: integer[0..59];
+                SS: integer[0..59]>
+
+    h, m, s: integer
+    jamInput : Jam
+
+    function buatJam(input h, input m, input s) -> Jam
+    { Fungsi ini akan membuat objek jam lalu 
+    mengembalikannya }
+
+    function isValidJam(input h, input m, input s) -> Boolean
+    { Fungsi ini akan mengembalikan True Jika
+    jam berada di 0 <= h <= 23, menit pada
+    0 <= m <= 59, dan detik pada 0 <= s <= 59}
+
+ALGORITMA
+    read(h)
+    read(m)
+    read(s)
+
+    if isValidJam(h,m,s) then
+        jam <- buatJam(h, m, s)
+    else
+        output("Tidak dapat membentuk jam")
+
+{ Implentasi Fungsi }
+    function buatJam(input h, input m, input s) -> Jam
+        KAMUS LOKAL
+            jamHasil : Jam
+        
+        ALGORITMA
+            jamHasil.HH = h
+            jamHasil.MM = m
+            jamHasil.SS = s
+
+            -> jamHasil
+    
+    function isValidJam(input h, input m, input s) -> boolean
+        ->  (h >= 0 and h < 24) and
+            (m >= 0 and m < 60) and 
+            (s >= 0 and s < 60)

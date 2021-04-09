@@ -1,0 +1,47 @@
+program nilaiAkhir
+{ Program ini akan menghitung nilai akhir dari
+  nilai UTS dan UAS yang telah diinputkan. Rumus:
+  Nilai akhir = 40% * UTS + 60% * UAS }
+
+KAMUS
+    n, sum : integer
+    nilUTS, nilUAS, NA : real
+
+    function isValidNilai(input nilai) -> boolean
+    { Mengeluarkan true jika nilai berada pada range
+    0..100 }
+
+ALGORITMA
+    sum <- 0
+    n <- 0
+
+    iterate
+        output("Nilai UTS = ")
+        input(nilUTS)
+    stop (not isValidNilai(nilUTS))
+        iterate
+            output("Nilai UAS = ")
+            input(nilUAS)
+        stop (not isValidJam(nilUAS))
+            output("Ulangi input nilai (0..100)!")
+
+        NA <- nilUTS * 0.4 + nilUAS * 0.6
+        output("Nilai akir pelajaran", n, "=", NA)
+
+        n <- n + 1
+        sum <- sum + NA
+    
+    if (n = 0) then
+        output("Data kosong, tidak ada nilai rata-rata !")
+    else
+        output("Nilai rata-rata dari", n, 
+                "pelajaran adalah =", sum/n)
+
+
+{ Implementasi Fungsi }
+
+    function isValidNilai(input nilai) -> boolean
+        KAMUS LOKAL
+
+        ALGORITMA
+        -> 0 <= nilai and nilai <= 100
