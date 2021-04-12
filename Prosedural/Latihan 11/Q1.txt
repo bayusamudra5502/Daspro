@@ -1,0 +1,62 @@
+program urutNilai
+{ Program ini akan mengurutkan tabel mahasiswa berdasarkan
+nilai dari yang terbesar menju yang terkecil }
+
+KAMUS
+    type TMahasiswa : < NIM : string; 
+                    Nama : string;
+                    Nilai : integer[0..100] >
+    type TabMhs : < TM : array [1..NMax] of TMahasiswa;
+                    Neff : integer[0..NMax] { nilai efektif TabMhs } >
+
+    procedure UrutTabMhs (input/output TMhs : TabMhs)
+    { Prosedur ini akan mengurutkan TMhs berdasarkan nilai 
+    dari urutan termesar menuju urutan terkecil }
+
+    function idMaxNilai (TMhs : TabMHS, idStart: integer) -> integer
+    { Prosedur ini akan mencari nilai terbesar dari TMhs dimulai dari
+    indeks idStart }
+
+ALGORITMA
+    function idMaxNilai (TMhs : TabMHS, idStart: integer) -> integer
+    { Prosedur ini akan mencari nilai terbesar dari TMhs dimulai dari
+    indeks idStart dan mengembalikan id nilai maksimum pertama. 
+    Diasumsikan 1 <= idStart <= TMhs.Neff}
+
+    KAMUS LOKAL 
+        idMax, max : integer
+        i : integer
+
+    ALGORTIMA
+        if (idStart >= 1 and idStart <= TMhs.Neff) then
+            max <- TMhs.TM[idStart].Nilai
+            idMax <- idStart
+            i <- idStart + 1
+
+            while (i <= idStart) do
+                if TMhs.TM[i].Nilai > max then
+                    max <- TMhs.TM[i].Nilai
+                    idMax <- i
+                
+                i <- i + 1
+            
+            -> idMax
+
+    procedure UrutTabMhs (input/output TMhs : TabMhs)
+    { Prosedur ini akan mengurutkan TMhs berdasarkan nilai 
+    dari urutan termesar menuju urutan terkecil }
+
+    KAMUS LOKAL
+        i : integer
+        idMax : integer
+        tmp : TMahasiswa
+
+    ALGORITMA
+        i tranversal [1..TMhs.Neff-1]
+            idMax <- idMaxNilai(TMhs, i)
+            
+            { SWAPPING }
+            tmp <- TMhs.TM[i]
+            TMhs.TM[i] <- TMhs.TM[idMax]
+            TMhs.TM[idMax] <- tmp
+

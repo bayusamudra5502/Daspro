@@ -15,7 +15,11 @@ ALGORITMA
     procedure InputTabSuhu(output T : TabSuhu, input N: integer)
     KAMUS LOKAL
         i : integer
+        result : TabSuhu
+
     ALGORITMA
-        T.Neff = N
-        i tranversal [NMin..N]
+        result.Neff <- N
+        i tranversal [NMin..NMIN+N]
             input(T.Tab[i])
+        
+        T <- result

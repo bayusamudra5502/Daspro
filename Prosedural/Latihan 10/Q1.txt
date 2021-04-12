@@ -21,8 +21,8 @@ ALGORITMA
         KAMUS LOKAL
             i : integer
         ALGORITMA
-            MIN = T[1] { First Element }
-            IMin = 1
+            MIN <- T[1] { First Element }
+            IMin <- 1
 
             i tranversal [1..N]
                 if (MIN > T[I]) then
