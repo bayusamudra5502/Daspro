@@ -3,9 +3,11 @@ program urutNilai
 nilai dari yang terbesar menju yang terkecil }
 
 KAMUS
+    const NMAX: integer = 100
     type TMahasiswa : < NIM : string; 
                     Nama : string;
                     Nilai : integer[0..100] >
+
     type TabMhs : < TM : array [1..NMax] of TMahasiswa;
                     Neff : integer[0..NMax] { nilai efektif TabMhs } >
 
@@ -33,7 +35,7 @@ ALGORITMA
             idMax <- idStart
             i <- idStart + 1
 
-            while (i <= idStart) do
+            while (i <= TMhs.Neff) do
                 if TMhs.TM[i].Nilai > max then
                     max <- TMhs.TM[i].Nilai
                     idMax <- i
@@ -49,7 +51,7 @@ ALGORITMA
     KAMUS LOKAL
         i : integer
         idMax : integer
-        tmp : TMahasiswa
+        tmp : TabMhs
 
     ALGORITMA
         i tranversal [1..TMhs.Neff-1]
@@ -59,4 +61,3 @@ ALGORITMA
             tmp <- TMhs.TM[i]
             TMhs.TM[i] <- TMhs.TM[idMax]
             TMhs.TM[idMax] <- tmp
-

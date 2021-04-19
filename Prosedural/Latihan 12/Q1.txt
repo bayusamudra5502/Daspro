@@ -1,0 +1,31 @@
+program membacaFIle
+{ Program ini akan membaca file sekuensial dengan nama rekaman.dat 
+dan menuliskan semua mahasiswa dnegan nilai >= 80 ke rekaman1.dat }
+
+KAMUS
+    type rekamanMHS : < NIM : string, nilai : integer>
+    const MarkMHS : rekamanMHS = <"99999999",99>
+    
+    ArsipMhsIn : SEQFILE of
+                (*) rekMhsIn : rekamanMHS
+                (1) MarkMHS
+    ArsipMhsOut : SEQFILE of
+                (*) rekMhsOut : rekamanMHS
+                (1) MarkMHS
+    
+ALGORITMA
+    assign(ArsipMhsIn, "rekaman.dat")
+    open(ArsipMhsIn, rekMhsIn)
+
+    assign(ArsipMhsOut, "rekaman1.dat")
+    rewrite(ArsipMhsOut)
+
+    while rekMhsIn.NIM != "99999999" and rekMhsIn.nilai != 99 do
+        if rekMhsIn.nilai >= 80 then
+            write(ArsipMhsOut, rekMhsIn)
+        
+        read(ArsipMhsIn, rekMhsIn)
+    
+    write(ArsipMhsOut, MarkMHS)
+    close(ArsipMhsIn)
+    close(ArsipMhsOut)

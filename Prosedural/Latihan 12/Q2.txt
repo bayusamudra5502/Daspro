@@ -1,0 +1,41 @@
+program HitungKategori
+{ Program akan menghitung jumlah barang terjual
+dalam satu kategori. }
+
+KAMUS
+    type penjualan : <Kategori : string, 
+                  KdBarang : string, 
+                  Jumlah : integer>
+
+    constant Mark : penjualan = < "", "", -1> { User Defined Mark }
+
+    ArsipPenjualan : SEQFILE of
+                (*) rekPenjualan : penjualan
+                (1) Mark
+
+    function EOP(rec: penjualan) -> boolean
+    { Menghasilan True bila rec merupakan EOP }
+
+    kategori : string
+    total : integer
+
+ALGORITMA
+    assign(ArsipPenjualan, "datapenjualan.dat")
+    open(ArsipPenjualan, rekPenjualan)
+
+    if EOP(rekPenjualan) then
+        output("Data Kosong")
+    else
+        kategori <- rekPenjualan.Kategori
+        total <- 0
+
+        repeat
+            if(rekPenjualan.Kategori = kategori) then
+                total <- total + rekPenjualan.Jumlah
+            else
+                output("Jumlah barang dengan kategori", kategori, "=", total)
+                total <- rekPenjualan.Jumlah
+                kategori <- rekPenjualan.Kategori
+            
+            read(ArsipPenjualan, rekPenjualan)
+        until EOP(rekPenjualan)

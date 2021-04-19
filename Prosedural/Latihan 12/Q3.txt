@@ -1,0 +1,49 @@
+program mergeData
+{ Program ini akan menggabungkan dua buah file
+berurutan berdasarkan NIM }
+
+KAMUS
+    type rekamanMHS : < NIM : integer, nilai : integer>
+    const MarkMHS : rekamanMHS = <99999999,99>
+
+    ArsipMHS1 : SEQFILE of
+            (*) rekMHSIn1: rekamanMHS
+            (1) MarkMHS
+    
+    ArsipMHS2 : SEQFILE of
+            (*) rekMHSIn2: rekamanMHS
+            (1) MarkMHS
+    
+    ArsipMHS3 : SEQFILE of
+            (*) rekMHSOut: rekamanMHS
+            (1) MarkMHS
+    
+ALGORITMA
+    assign(ArsipMHS1, "rekmhs1.dat")
+    assign(ArsipMHS2, "rekmhs2.dat")
+    assign(ArsipMHS3, "rekmhs.dat")
+
+    open(ArsipMHS1, rekMHSIn1)
+    open(ArsipMHS2, rekMHSIn2)
+    rewrite(ArsipMHS3, rekMHSOut)
+
+    while (rekMHSIn1.NIM != MarkMHS.NIM and rekMHSIn2.NIM != MarkMHS.NIM and 
+            rekMHSIn1.nilai != MarkMHS.nilai and rekMHSIn2.nilai != MarkMHS.nilai) do
+        if rekMhsIn1.NIM <= rekMHSIn2.NIM then
+            write(ArsipMHS3, rekMhsIn1)
+            read(ArsipMHS1. rekMHSIn1)
+        else {rekMhsIn1.NIM > rekMHSIn2.NIM}
+            write(ArsipMHS3, rekMhsIn2)
+            read(ArsipMHS2, rekMHSIn2)
+    
+    while (rekMHSIn1.NIM != MarkMHS.NIM and rekMHSIn1.nilai != MarkMHS.nilai) do
+        write(ArsipMHS3, rekMhsIn1)
+        read(ArsipMHS1, rekMHSIn1)
+    
+    while (rekMHSIn1.NIM != MarkMHS.NIM and rekMHSIn1.nilai != MarkMHS.nilai) do
+        write(ArsipMHS3, rekMhsIn2)
+        read(ArsipMHS2, rekMHSIn2)
+    
+    close (ArsipMH1)
+    close (ArsipMH2)
+    close (ArsipMH3)
