@@ -9,6 +9,7 @@ KAMUS
     ArsipMhsIn : SEQFILE of
                 (*) rekMhsIn : rekamanMHS
                 (1) MarkMHS
+
     ArsipMhsOut : SEQFILE of
                 (*) rekMhsOut : rekamanMHS
                 (1) MarkMHS
@@ -20,7 +21,7 @@ ALGORITMA
     assign(ArsipMhsOut, "rekaman1.dat")
     rewrite(ArsipMhsOut)
 
-    while rekMhsIn.NIM != "99999999" and rekMhsIn.nilai != 99 do
+    while not(rekMhsIn.NIM == "99999999" and rekMhsIn.nilai == 99) do
         if rekMhsIn.nilai >= 80 then
             write(ArsipMhsOut, rekMhsIn)
         
