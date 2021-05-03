@@ -36,14 +36,15 @@ ALGORITMA
             write(ArsipMHS3, rekMhsIn2)
             read(ArsipMHS2, rekMHSIn2)
     
-    while (rekMHSIn1.NIM != MarkMHS.NIM and rekMHSIn1.nilai != MarkMHS.nilai) do
+    while not (rekMHSIn1.NIM == MarkMHS.NIM and rekMHSIn1.nilai == MarkMHS.nilai) do
         write(ArsipMHS3, rekMhsIn1)
         read(ArsipMHS1, rekMHSIn1)
     
-    while (rekMHSIn1.NIM != MarkMHS.NIM and rekMHSIn1.nilai != MarkMHS.nilai) do
+    while not (rekMHSIn1.NIM == MarkMHS.NIM and rekMHSIn1.nilai == MarkMHS.nilai) do
         write(ArsipMHS3, rekMhsIn2)
         read(ArsipMHS2, rekMHSIn2)
     
+    write(ArsipMHS3, MarkMHS)
     close (ArsipMH1)
     close (ArsipMH2)
     close (ArsipMH3)
