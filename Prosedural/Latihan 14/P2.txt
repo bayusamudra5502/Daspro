@@ -1,0 +1,114 @@
+programm kuliah
+
+KAMUS
+    constant NMax : integer = 100
+
+    type MatKul : < KodeMK     : integer,
+                    NamaMK     : string,
+                    Pengajar   : string,
+                    JmlPeserta : integer[0..100] >
+
+    type TabMatKul : < TM : array [1..NMax] of MatKul,
+                    NELMT : integer { nilai efektif [0..NMax], 0 jika tabel kosong >
+    
+    procedure isiTabMatkul(input/output T: TabMatKul)
+    { I.S. T merupakan TabMatkul dengan isi yg kosong, atau berisi, atau penuh
+    F.S. Akan mengisikan data tambahan dari input bila penuh berikan pesan }
+
+    procedure WriteKuliahKosong(input T:TabMatKul)
+    { I.S. T merupakan TabMatKul yang dapat memiliki isi atau tidak
+    F.S. Menampilkan KodeMK, NamaMK, Pengajar untuk JmlPeserta = 0 }
+ALGORITMA
+    { Q.2 }
+
+    procedure isiTabMatkul(input/output T: TabMatKul)
+    { I.S. T merupakan TabMatkul dengan isi yg kosong, atau berisi, atau penuh
+    F.S. Akan mengisikan data tambahan dari input bila penuh berikan pesan }
+    KAMUS LOKAL
+        inpKodeMK : integer
+        inpNamaMK : string
+        inpPengajar : string
+        InpNPeserta : integer[0..100]
+        i : integer
+
+    ALGORITMA
+        if T.NELMT = NMAX then
+            output("Tabel Penuh")
+        else
+            input(inpKodeMK)
+            i <- T.NELMT
+
+            while not(T.NELMT = NMAX or inpKodeMK = "XX9999") do
+                input(inpNamaMK)
+                input(inpPengajar)
+                input(InpNPeserta)
+
+                T.TM[i].KodeMK <- inpKodeMK
+                T.TM[i].NamaMK <- inpNamaMK
+                T.TM[i].Pengajar <- inpPengajar
+                T.TM[i].JmlPeserta <- InpNPeserta
+
+                i <- i + 1
+                T.NELMT <- T.NELMT + 1
+
+    { Q.3 }        
+    procedure WriteKuliahKosong(input T:TabMatKul)
+    { I.S. T merupakan TabMatKul yang dapat memiliki isi atau tidak
+    F.S. Menampilkan KodeMK, NamaMK, Pengajar untuk JmlPeserta = 0 }
+
+    KAMUS LOKAL
+        i : integer
+
+    ALGORITMA
+        if T.NELMT = 0 then
+            output("Tidak ada data")
+        else
+            i tranversal [1..T.NELMT]
+                if(T.TM[i].JmlPeserta = 0) then
+                    output("Kode MK:", T.TM[I].KodeMK)
+                    output("NAMA MK:", T.TM[I].NamaMK)
+                    output("Pengajar:", T.TM[I].Pengajar)
+    
+    { Q.4 }
+    procedure UpdatMatkul(input/output T:TabMatKul, input N: integer)
+    { I.S. T merupakan TabMatKul yang dapat memiliki elemen ata tidak }
+    { F.S. Nilai JmlPeserta pada T semuanya akan diupdate menjadi N }
+
+    KAMUS LOKAL
+        i : integer
+    
+    ALGORITMA
+        if N <= 100 then
+            if T.NELMT > 0 then
+                i tranversal [1..T.NELMT]
+                    T.TM[i].JmlPeserta <- N
+        else
+            output("Nilai N harus <= 100")
+    
+    { Q.5 }
+    procedure SortJmlPeserta(input/output T: TabMatKul, input asc: boolean)
+    { I.S. T merupakan TabMatKul yang dapat memliki elemen atau kosong }
+    { F.S. T akan diurutkan secara menaik/menurun berdasarkan JmlPeserta (Menaik jika asc = True)}
+
+    KAMUS LOKAL
+        i, j : integer
+        idPointed: integer
+        pointedVal: integer
+        tmp : Matkul
+        compare: boolean
+
+    ALGORITMA
+        { Pengurutan Bubble Sort }
+        if (T.NELMT > 1) then
+            i tranversal [1..T.NELMT-1]
+                j tranversal [1..T.NELMT-i]
+                    if acs then
+                        compare <- T.TM[j].JmlPeserta > T.TM[j+1].JmlPeserta
+                    else
+                        compare <- T.TM[j].JmlPeserta < T.TM[j+1].JmlPeserta
+                    
+                    if compare then
+                        { Swapping }
+                        tmp <- T.TM[j]
+                        T.TM[j] <- T.TM[j+1]
+                        T.TM[j+1] <- tmp

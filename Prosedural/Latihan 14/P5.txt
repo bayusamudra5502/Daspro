@@ -1,0 +1,38 @@
+program Buku
+{ Menghitung rerata rating }
+
+KAMUS
+    type Buku = <genre: string, judul: string, rating:integer[0..5]>
+
+    constant MARK = <”XXX”,”XXX”,0>
+
+    fRead : SEQFILE of
+            (*) rekBuku : Buku
+            (1) MARK
+
+    curGenre : string
+    curSum, curN : integer
+
+ALGORITMA
+    assign(fRead, "BUKU.DAT")
+    open(fRead, rekBuku)
+
+    if rekBuku = MARK then
+        output("Arsip buku kosong")
+    else
+        curSum <- 0
+        curN <- 0
+        curGenre <- rekBuku.genre
+
+        while rekBuku != MARK do
+            if rekBuku.genre = curGenre then
+                curSum <- curSum + rekBuku.rating
+                curN <- curN + 1
+            else
+                output("Nama Genre:", curGenre)
+                output("Rata-rata Rating", curSum/curN)
+
+                curGenre <- rekBuku.genre
+                curSum <- rekBuku.rating
+                curN <- 1
+        

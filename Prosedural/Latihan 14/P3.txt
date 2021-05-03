@@ -1,0 +1,26 @@
+program SearchSentinel
+
+KAMUS
+    constant NMax : integer = 100
+    type TabChar : < TC : array [0..NMax] of character,
+                 Neff : integer { nilai efektif [0..NMax], 0 jika tabel kosong } >
+
+    function Search(T: TabChar, CC: character) -> integer
+    { Mencari indeks terakhir dari T }
+
+ALGORITMA
+    function Search(T: TabChar, CC: character) -> integer
+    { Mencari indeks terakhir dari T }
+    
+    KAMUS LOKAL
+        i : integer
+        idx : integer
+
+    ALGORITMA
+        T.TC[0] <- CC
+        
+        i tranversal [0..T.Neff]
+            if T.TC[i] = CC then
+                idx <- I
+        
+        -> idx

@@ -1,0 +1,76 @@
+program Berkas
+{ Menncari berkas yang isLater }
+
+KAMUS
+    constant NMAX = 1000
+
+    type Date = <D: integer[1..31], M: integer[1..12], Y:integer>
+    type Berkas = <Nama: string, Ukuran: integer, Tanggal: Date>
+    type tabBerkas = <data: array[1..NMAX] of Berkas, Neff: integer[0..NMAX] >
+    
+    constant MARK: Berkas = <"",0,<31,12,1900>>
+
+    fRead : SEQFILE of
+            (*) rekDataBerkas: Berkas
+            (1) MARK
+    
+    fWrite : SEQFILE of
+            (*) rekTulis: Berkas
+            (1) MARK
+
+    TBerkas, THasil : tabBerkas
+    i : integer
+    D1: Date
+
+    function isLater(d1,d2: Date) -> boolean
+    { I.S. Fungsi menerima dua buah parameter yang merupakan tanggal valid }
+    { F.S. Mengembalikan True bila d1 sama atau setelah d2. kebalikannya False }
+
+ALGORITMA
+    { Baca Masukan User }
+    input(D1.D, D1.M, D1.Y)
+
+    { Baca BERKAS.DAT }
+    assign(fRead, "BERKAS.DAT")
+    open(fRead, rekDataBerkas)
+
+    assign(fWrite, "HASIL.DAT")
+    rewrite(fWrite)
+
+    if rekDataBerkas = MARK then
+        output("File Kosong")
+    else
+        i <- 1
+
+        while (rekDataBerkas != MARK) and (i <= NMAX) do
+            TBerkas.data[i] <- rekDataBerkas
+            TBerkas.Neff <- i
+            i <- i + 1
+
+
+        { Proses Pemilihan berkas isLater }
+        j <- 1
+        i tranversal [1..TBerkas.Neff]
+            if(isLater(TBerkas.data[i].Tanggal , D1)) then
+                THasil.data[j] <- TBerkas.data[i]
+                THasil.Neff <- j
+                j <- j + 1
+        
+        { Proses Penulisan Berkas }
+        if THasil.Neff = 0 then
+            output("Tidak ada berkas yang sesuai")
+        else
+            i <- 1
+            while (i <= THasil.Neff) do
+                write(fWrite, THasil.data[i])
+                i <- i + 1
+
+    write(fWrite, MARK)
+    close(fWrite)
+    close(fRead)
+
+    function isLater(d1,d2: Date) -> boolean
+    KAMUS
+
+    ALGORITMA
+        -> (d2.Y <= d1.Y) and (d2.M <= d1.M) and (d2.D <= d1.d)

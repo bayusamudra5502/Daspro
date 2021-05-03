@@ -1,0 +1,47 @@
+program Titik
+{ Program untuk menentukan jumlah titik pada setiap kuadran }
+
+KAMUS
+   constant NMax : integer = 100
+   type Titik    : < x, y: integer; warna : integer[1..5] > 
+   type ArrTitik : array [1..NMax] of Titik
+
+    function Kuadran ( T : Titik ) -> integer[0..4]
+    { Menghasilkan kuadran Titik T di atas koordinat cartesius.
+    Jika T berada di sumbu x atau y atau di titik origin, fungsi menghasilkan 0. }
+
+    procedure KalkulasiDanCetakKuadran ( input A : ArrTitik )
+    { I.S.: A terdefinisi dan berisi 100 data Titik
+    F.S.: Menampilkan daftar kuadran dan jumlah titik pada setiap kode warna
+            berdasarkan isi A sesuai spesifikasi soal }
+
+ALGORITMA
+    procedure KalkulasiDanCetakKuadran ( input A : ArrTitik )
+    KAMUS LOKAL
+        type matKuadranWarna = array [0..4] of array [1..5] of integer
+        nTitik : array[0..4] of integer
+        data : matKuadranWarna
+        i, j : integer
+        kuadTitik : integer
+
+    ALGORITMA
+        { Mengkosongkan nilai }
+        i tranversal [0..4]
+            nTitik[i] <- 0
+
+            j tranversal [1..5]
+                data[i][j] <- 0
+        
+        i tranversal [1..NMAX]
+            kuadTitik <- Kuadran(A)
+            data[kuadTitik][A.warna] <- data[kuadTitik][A.warna] + 1
+            nTitik[kuadTitik] <- nTitik[kuadTitik] + 1
+
+        i tranversal [0..4]
+            output("Kuadran", i)
+            output("Ada". nTitik[i], "titik dengan:")
+
+            j tranversal [1..5]
+                output("Kode warna", j, "sejumlah", data[i][j])
+                
+
